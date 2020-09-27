@@ -7,6 +7,11 @@ template<class T>
 Tree<T>::Tree(TreeNode<T>* root): root_(root){}
 
 template<class T>
+Tree<T>::~Tree(){
+
+}
+
+template<class T>
 void Tree<T>::insert(TreeNode<T>* node){
     if(root_ == nullptr){
         root_ = node;
@@ -61,8 +66,8 @@ void Tree<T>::insert(TreeNode<T>* node){
 }
 
 template<class T>
-int Tree<T>::getHeight() const{
-    return obtainHeight(root_, 0);
+int Tree<T>::depth() const{
+    return getDepth(root_, 0);
 }
 
 template<class T>
@@ -166,6 +171,16 @@ void Tree<T>::printInOrder(TreeNode<T>* node) const{
 }
 
 template<class T>
+void Tree<T>::clear(TreeNode<T>* node){
+    if(node){
+        clear(node->getLeft());
+        clear(node->getRight());
+        delete node;
+    }
+}
+
+
+template<class T>
 bool Tree<T>::searchProperty(TreeNode<T>*node, T target) const{
     if(node){
         if(node->getValue() == target){
@@ -183,10 +198,10 @@ bool Tree<T>::searchProperty(TreeNode<T>*node, T target) const{
 }
 
 template<class T>
-int Tree<T>::obtainHeight(TreeNode<T>*node, int curr) const{
+int Tree<T>::getDepth(TreeNode<T>*node, int curr) const{
     if(node){
         curr++;
-        return std::max(obtainHeight(node->getRight(), curr), obtainHeight(node->getLeft(), curr));
+        return std::max(getDepth(node->getRight(), curr), getDepth(node->getLeft(), curr));
     }
     return curr;
 }
@@ -204,7 +219,7 @@ bool Tree<T>::checkIfFull(const TreeNode<T>*node) const{
 
 template<class T>  
 int Tree<T>::subtreeHeightDifference(TreeNode<T>* left, TreeNode<T>* right){
-    return obtainHeight(left,0) - obtainHeight(right,0);
+    return getDepth(left,0) - getDepth(right,0);
 }
  
 

@@ -9,7 +9,9 @@ TreeNode<T>::TreeNode(const T& data, TreeNode<T>* left, TreeNode<T>* right): val
 template<class T>
 TreeNode<T>::~TreeNode(){
     left_ = nullptr;
+    delete(left_);
     right_ = nullptr;
+    delete(right_);
 }
 
 template<class T>

@@ -36,10 +36,12 @@ int main(){
     // }
     // tree_test.pathToNode(49);
     //  tree_test.preOrderTraversal();
-    cout << tree_test.getHeight() << endl;
+    cout << tree_test.depth() << endl;
     cout << tree_test.getGreatestValue() << " " << tree_test.getSmallestValue() << endl;
     tree_test.pathToNode(16);
     cout << tree_test.isFullBinaryTree();
+
+    // tree_test.clear(tree_test.getRoot());
     // cout << tree_test.getSmallestNode() << endl;;
 //     TreeNode<int>* trav = tree_test.getRoot();
 //     while(trav){
