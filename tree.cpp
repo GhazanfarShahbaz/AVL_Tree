@@ -52,10 +52,10 @@ void Tree<T>::insert(TreeNode<T>* node){
         root_->setLeft(rotateLeft(root_->getLeft()));  
         root_ = rotateRight(parse);  
     } 
-    else if (balance < -1 and node->getValue() < parse->getValue()){  
+    else if (balance < -1 and node->getValue() > root_->getRight()->getValue()){  
         root_->setRight(rotateRight(root_->getRight()));  
         root_ = rotateLeft(parse);  
-    }  
+    }
   
     return;
 }
