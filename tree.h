@@ -11,8 +11,9 @@ template<class T> class Tree{
         int getHeight() const;
         void insert(TreeNode<T>* node);
         bool search(const T val) const;
-        T getGreatestNode() const;
-        T getSmallestNode() const;
+        bool isFullBinaryTree() const;
+        T getGreatestValue() const;
+        T getSmallestValue() const;
         void pathToNode(const T target) const;
         void postOrderTraversal() const;
         void preOrderTraversal() const;
@@ -26,6 +27,7 @@ template<class T> class Tree{
         void printInOrder(TreeNode<T>* node) const;
         void printPreOrder(TreeNode<T>* node) const;
         int obtainHeight(TreeNode<T>* node, int curr = 0) const;
+        bool checkIfFull(const TreeNode<T>* node) const;
         // AVL Functions
         int subtreeHeightDifference(TreeNode<T>* left, TreeNode<T>* right);
         TreeNode<T>* rotateRight(TreeNode<T>* node);

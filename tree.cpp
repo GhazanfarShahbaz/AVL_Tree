@@ -76,7 +76,12 @@ TreeNode<T>* Tree<T>::getRoot() const{
 }
 
 template<class T>
-T Tree<T>::getGreatestNode() const{
+bool Tree<T>::isFullBinaryTree() const{
+    return checkIfFull(root_);
+}
+
+template<class T>
+T Tree<T>::getGreatestValue() const{
     TreeNode<T>* parse = root_;
     while(parse->getRight()){
         parse = parse->getRight();
@@ -85,7 +90,7 @@ T Tree<T>::getGreatestNode() const{
 }
 
 template<class T>
-T Tree<T>::getSmallestNode() const{
+T Tree<T>::getSmallestValue() const{
     TreeNode<T>* parse = root_;
     while(parse->getLeft()){
         parse = parse->getLeft();
@@ -187,6 +192,17 @@ int Tree<T>::obtainHeight(TreeNode<T>*node, int curr) const{
 }
 
 template<class T>
+bool Tree<T>::checkIfFull(const TreeNode<T>*node) const{
+    if(node){
+        if((node->getRight() and not node->getLeft()) or (node->getLeft() and not node->getRight())){
+            return false;
+        }
+        return true and checkIfFull(node->getRight()) and checkIfFull(node->getLeft());
+    }
+    return true;
+}
+
+template<class T>  
 int Tree<T>::subtreeHeightDifference(TreeNode<T>* left, TreeNode<T>* right){
     return obtainHeight(left,0) - obtainHeight(right,0);
 }
