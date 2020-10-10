@@ -48,18 +48,20 @@ void Tree<T>::insert(TreeNode<T>* node){
     int balance = subtreeHeightDifference(root_->getLeft(), root_->getRight());  
 
     if (balance > 1 && node->getValue() < root_->getLeft()->getValue()){
-        root_  = rotateRight(root_);  
+        root_  = rotateRight(getBrokenNode(node->getValue(), root_));  
     } 
     else if (balance < -1 &&  node->getValue() > root_->getRight()->getValue()){
-        root_ = rotateLeft(root_);  
+        root_ = rotateLeft(getBrokenNode(node->getValue(), root_));  
     }
     else if (balance > 1 && node->getValue() > root_->getLeft()->getValue()){   
-        root_->setLeft(rotateLeft(root_->getLeft()));  
-        root_ = rotateRight(parse);  
+        TreeNode<T>* ph = getBrokenNode(node->getValue(), root_);
+        root_->setLeft(rotateLeft(ph->getLeft()));  
+        root_ = rotateRight(ph);  
     } 
     else if (balance < -1 and node->getValue() > root_->getRight()->getValue()){  
-        root_->setRight(rotateRight(root_->getRight()));  
-        root_ = rotateLeft(parse);  
+        TreeNode<T>* ph = getBrokenNode(node->getValue(), root_);
+        root_->setRight(rotateRight(ph->getRight()));  
+        root_ = rotateLeft(ph);  
     }
   
     return;
@@ -243,4 +245,22 @@ TreeNode<T>* Tree<T>::rotateLeft(TreeNode<T>* node){
     node->setRight(after_next);
 
     return next;
+}
+
+template<class T>
+TreeNode<T>* Tree<T>::getBrokenNode(T value, TreeNode<T>* root){
+    if(root){
+        if(abs(subtreeHeightDifference(root->getLeft(), root->getRight())) > 1){
+            return root;
+        }
+        else{
+            if(root->getValue() < value){
+                return getBrokenNode(value, root->getRight());
+            }
+            else if(root->getValue() > value){
+                return getBrokenNode(value, root->getRight());
+            }
+        }
+    }
+    return nullptr;
 }

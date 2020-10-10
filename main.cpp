@@ -7,12 +7,12 @@ using namespace std;
 int main(){
     TreeNode<int>* test= new TreeNode<int>(1);
     Tree<int> tree_test(test);
-    std::vector<int> values;
-    for(int i = 0; i < 100; i++){
-        values.push_back(rand()%100);
+    std::vector<int> values{1};
+    for(int i = 0; i < 10000; i++){
+        values.push_back(rand()%1000000);
     }
     for(int value: values){
-        cout << value << " ";
+        // cout << value << " ";
         TreeNode<int>* curr = new TreeNode<int>(value);
         tree_test.insert(curr);
     }
@@ -34,12 +34,22 @@ int main(){
     //     a->setValue(x);
     //     tree_test.insert(a);
     // }
-    // tree_test.pathToNode(49);
-    //  tree_test.preOrderTraversal();
+    cout << endl;
+    tree_test.pathToNode(values[70]);
+    //  tree_test.inOrderTraversal();
     cout << tree_test.depth() << endl;
     cout << tree_test.getGreatestValue() << " " << tree_test.getSmallestValue() << endl;
-    tree_test.pathToNode(16);
-    cout << tree_test.isFullBinaryTree();
+    cout << *std::max_element(values.begin(), values.end()) << " " << *std::min_element(values.begin(), values.end()) << endl;
+    tree_test.pathToNode(values[50]);
+    // cout << tree_test.isFullBinaryTree();
+
+
+    for(int value: values){
+       if(not tree_test.search(value)){
+           cout << "TEST FAILED" << endl;
+           cout << value;
+       }
+    }
 
     // tree_test.clear(tree_test.getRoot());
     // cout << tree_test.getSmallestNode() << endl;;

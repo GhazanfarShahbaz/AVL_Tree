@@ -165,6 +165,16 @@ template<class T> class Tree{
         **/
         TreeNode<T>* rotateLeft(TreeNode<T>* node);
 
+        /**
+         *  Get Broken Node Function
+         * Gets the node whose balance has been messed up by insertion
+         * @param value: the value that was inserted
+         * @param root: the root node
+         * @return: a TreeNode whose value was broken, if nothing was broken then a nullptr will be returned
+        
+        **/
+        TreeNode<T>* getBrokenNode(T value, TreeNode<T>* root);
+
 };
 
 
