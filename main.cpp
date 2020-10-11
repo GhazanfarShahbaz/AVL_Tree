@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <set>
 #include "tree.h"
 #include "treeNode.h"
 using namespace std;
@@ -7,9 +8,9 @@ using namespace std;
 int main(){
     TreeNode<int>* test= new TreeNode<int>(1);
     Tree<int> tree_test(test);
-    std::vector<int> values{1};
-    for(int i = 0; i < 10000; i++){
-        values.push_back(rand()%1000000);
+    std::set<int> values{1};
+    for(int i = 0; i < 20; i++){
+        values.insert(rand()%100000000000);
     }
     for(int value: values){
         // cout << value << " ";
@@ -35,27 +36,37 @@ int main(){
     //     tree_test.insert(a);
     // }
     cout << endl;
-    tree_test.pathToNode(values[70]);
+    // tree_test.pathToNode(values[70]);
     //  tree_test.inOrderTraversal();
     cout << tree_test.depth() << endl;
     cout << tree_test.getGreatestValue() << " " << tree_test.getSmallestValue() << endl;
     cout << *std::max_element(values.begin(), values.end()) << " " << *std::min_element(values.begin(), values.end()) << endl;
-    tree_test.pathToNode(values[50]);
+    // tree_test.pathToNode(values[96]);
     // cout << tree_test.isFullBinaryTree();
 
 
     for(int value: values){
-       if(not tree_test.search(value)){
-           cout << "TEST FAILED" << endl;
-           cout << value;
-       }
+        cout << value << " Path ";
+        tree_test.pathToNode(value);
+        // break;
+    //    if(not tree_test.search(value)){
+    //        cout << "TEST FAILED" << endl;
+    //        cout << value;
+    //    }
     }
 
+    cout << endl;
+
+
+    cout << tree_test.numberOfNodes() << endl;;
+    cout << values.size() << endl;;
+
+    cout << tree_test.checkIfBST();
     // tree_test.clear(tree_test.getRoot());
     // cout << tree_test.getSmallestNode() << endl;;
-//     TreeNode<int>* trav = tree_test.getRoot();
-//     while(trav){
-//         cout << trav->getValue() << endl;
-//         trav = trav->getRight();
-//     }
+    // TreeNode<int>* trav = tree_test.getRoot();
+    // while(trav){
+    //     cout << trav->getValue() << endl;
+    //     trav = trav->getRight();
+    // }
 }

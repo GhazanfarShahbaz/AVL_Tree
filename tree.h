@@ -64,6 +64,8 @@ template<class T> class Tree{
         **/ 
         T getSmallestValue() const;
 
+        int numberOfNodes() const;
+
         /** Path To Node Functions
          * If a given value exists in the tree it will retun the path to it
          * @param target: a T value that will be searched for in the tree
@@ -88,6 +90,9 @@ template<class T> class Tree{
          * @post: prints elements in the tree in order
         **/ 
         void inOrderTraversal() const;
+
+
+        bool checkIfBST() const;
  
     private:
         TreeNode<T>* root_; //Root of the tree
@@ -149,7 +154,7 @@ template<class T> class Tree{
          * @param right: the right subtree node to be compared
          * @return: an integer with the height difference between the 2 subtrees
         **/ 
-        int subtreeHeightDifference(TreeNode<T>* left, TreeNode<T>* right);
+        int subtreeHeightDifference(TreeNode<T>* left, TreeNode<T>* right) const;
 
         /** Rotate Right Function
          * Rotates the tree right, in order to preserve search property this is accessed by the insert function
@@ -174,6 +179,10 @@ template<class T> class Tree{
         
         **/
         TreeNode<T>* getBrokenNode(T value, TreeNode<T>* root);
+
+        int getNumberOfNodes(TreeNode<T>* root) const;
+
+        bool check(TreeNode<T>* node) const;
 
 };
 
